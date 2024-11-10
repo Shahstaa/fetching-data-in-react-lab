@@ -1,19 +1,20 @@
-import StarshipCard from './StarshipCard';  
+import React from "react";
+import StarshipCard from "./StarshipCard";
 
 const StarshipList = ({ starships }) => {
+  if (starships.length === 0) {
+    return <p>No starships found.</p>;
+  }
+
   return (
-    <div>
-            {/* to show the defult data we need a map */}
-            {starships.length > 1 && starships.map(starship => (
-                <>
-                <p>Number of results: {starships.length}</p>
-                <StarshipCard key={starship.name} starship={starship} />
-                </>
-            ))}
-            {/* to show the data after searching */}
-            <StarshipCard key={starships.name} starship={starships} />
-        </div>
-    );
+    <section>
+      <ul>
+        {starships.map((starship, index) => (
+          <StarshipCard key={index} starship={starship} />
+        ))}
+      </ul>
+    </section>
+  );
 };
 
 export default StarshipList;

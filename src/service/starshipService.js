@@ -1,18 +1,28 @@
-const BASE_URL = "https://swapi.dev/api/starships/";
+const BASE_URL = 'https://swapi.dev/api/starships/'
 
-const searchStarships = async (query) => {
-  try {
-    
-    const response = await fetch(`${BASE_URL}?search=${query}`);
-    const data = await response.json();
-    console.log('Data:', data);
-    return data.results; 
-  } catch (error) {
-    console.error("Error searching for starships:", error);
-    return []; 
-  }
-};
+const index = async () => {
+    try {
+        const res = await fetch(BASE_URL)
+        const data = await res.json()
+        return data 
+    } catch (err) {
+        console.log('Error fetching starships:', err)
+    }
+}
 
-export { searchStarships };
+
+const search = async (spaceshipName) => {
+    try {
+        const queryString = `?search=${spaceshipName}` 
+        const res = await fetch(BASE_URL + queryString)
+        const data = await res.json()
+        return data 
+    } catch (err) {
+        console.log('Error searching for starships:', err)
+    }
+}
+
+export { index, search }
+
 
   

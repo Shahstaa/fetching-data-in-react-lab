@@ -1,29 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 
-const StarshipSearch = (props) => {
-  const [spaceshipName, setSpaceshipName] = useState('');  
+const StarshipSearch = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      props.fetchData(spaceshipName);  
-      setSpaceshipName(''); 
+    e.preventDefault();
+    onSearch(query); 
   };
 
   return (
-    <section>
+    <>
     <h2>Search</h2>
     <form onSubmit={handleSubmit}>
-        <label htmlFor="starship">Search Term by ID:</label>
+        <label htmlFor="spaceshipName">Search Term: </label>
         <input
-        id="starship"
-        type="number"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        />
-        <button type="submit">Search</button>
+         type="text"
+         value={query}
+         onChange={(e) => setQuery(e.target.value)}
+         placeholder="Search for a starship..."
+       />
+      <button type="submit">Search</button>
     </form>
-    </section>
+</>
 );
 };
 
-export default StarshipSearch;
+export default StarshipSearch
+
+
+
+
+
+
+
+    
